@@ -1,0 +1,35 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Doctor name:</strong>
+  <%= @doctorlocation.doctorname %>
+</p>
+
+<p>
+  <strong>Address:</strong>
+  <%= @doctorlocation.address %>
+</p>
+
+<p>
+  <strong>Latitude:</strong>
+  <%= @doctorlocation.latitude %>
+</p>
+
+<p>
+  <strong>Longitude:</strong>
+  <%= @doctorlocation.longitude %>
+</p>
+
+<%= image_tag "http://maps.google.com/maps/api/staticmap?size=450x300&sensor=false&zoom=16&markers=#{@doctorlocation.latitude}%2C#{@doctorlocation.longitude}" %>
+
+
+<h3>Nearby locations</h3>
+<ul>
+<% for doctorlocation in @doctorlocation.nearbys(10) %>
+  <li><%= link_to doctorlocation.address, doctorlocation %> (<%= doctorlocation.distance.round(2) %> miles)</li>
+<% end %>
+</ul>
+
+
+<%= link_to 'Edit', edit_doctorlocation_path(@doctorlocation) %> |
+<%= link_to 'Back', doctorlocations_path %>

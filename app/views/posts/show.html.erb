@@ -1,0 +1,9 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Post in <%= @ask_doctor.title %></h1>
+<p>
+<%= @post.post_message %>
+</p>
+
+<%= link_to 'Edit', edit_ask_doctor_post_path(@ask_doctor, @post) %> |
+<%= link_to 'Back', ask_doctor_posts_path(@ask_doctor) %>

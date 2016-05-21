@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+   
+    <title><%= content_for?(:title) ? yield(:title) : "Untitled" %></title>
+
+    <%= stylesheet_link_tag    "application" %>
+    <%= javascript_include_tag "vendor/modernizr" %>
+    <%= javascript_include_tag "application", 'data-turbolinks-track' => true %>
+    <%= csrf_meta_tags %> 
+  </head>
+
+  <body class="context">
+
+
+<div class="top-bar" id="main-menu">
+  <div class="top-bar-left">
+    <ul class="dropdown menu" data-dropdown-menu>
+      <li class="menu-text">TellToDoc</li>
+    </ul>
+  </div>
+  <div class="top-bar-right">
+    <ul class="menu" data-responsive-menu="drilldown medium-dropdown">
+      <li><%= link_to "Home", home_index_path%></li>
+      <li><%= link_to "Ask Doctor", ask_doctors_path %></li>
+      <li><%= link_to "Find Doctor", doctorlocations_path %></li>
+      <li><%= link_to "Book Appointment", new_appointment_path %></li>
+      <li><%= link_to "Profile", profiles_path %></li>
+    </ul>
+    <div >
+    <% if user_signed_in? %>
+    Signed in as <strong><%= current_user.email %></strong>. Not you?
+    <%= link_to 'Edit profile', edit_user_registration_path %> | 
+    <%= link_to "Sign out", destroy_user_session_path, :method => :delete %>
+    <% else %>
+    <%= link_to "Sign up", new_user_registration_path %> or <%= link_to "sign in", new_user_session_path %>
+    <% end %>
+                
+</div>
+  </div>
+</div>
+
+<%= yield %>
+</body>
+</html>
+
+
+
+
+
+

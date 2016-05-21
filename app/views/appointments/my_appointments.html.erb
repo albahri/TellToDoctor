@@ -1,0 +1,9 @@
+        <% @appointments.each do |appointment| %>
+        
+              <p>Name: <%= appointment.name %></p>
+              <p>Email:<%= appointment.email %> </p>
+              <p>Day: <%= appointment.time.strftime("%d %b %y") %></p>
+              <p>Time: <%= appointment.time.strftime("%H:%M") %></p>
+              <td><%= link_to 'Show', appointment %></td>
+      		  <td><%= link_to 'Edit', edit_appointment_path(appointment) %></td>
+      		  <td><%= link_to 'Destroy', appointment, method: :delete, data: { confirm: 'Are you sure?' } %></td>

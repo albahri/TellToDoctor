@@ -1,0 +1,27 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @ask_doctor.name %>
+</p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @ask_doctor.title %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @ask_doctor.description %>
+</p>
+<!-- Display the post of ask doctor -->
+<h5>Posts</h5>
+<% @ask_doctor.posts.each do |p| %>
+<p>
+<b>Message:</b>
+<%= p.post_message %>
+</p>
+<% end %>
+<%= link_to 'Show posts', ask_doctor_posts_path(@ask_doctor) %> |
+<%= link_to 'Edit', edit_ask_doctor_path(@ask_doctor) %> |
+<%= link_to 'Back', ask_doctors_path %>
