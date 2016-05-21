@@ -1,8 +1,9 @@
 Rails.application.routes.draw do
- get "my_clients", to: 'appointments#my_clients', as: 'my_clients'
- get 'my_appointments', to: 'appointments#my_appointments', as: 'my_appointments'
+ 
+ get 'my_appointment', to: 'appointments#my_appointments', as: 'my_appointments'
 
-
+ get 'my_profile', to: 'profiles#my_profile', as: 'my_profile'
+ 
   resources :appointments
 
   resources :doctorlocations

@@ -1,5 +1,17 @@
-<h1>New Appointment</h1>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-sm-4">
+    <div class = "form-style-8">
+    <h1>New Appointment</h1>
 
 <%= render 'form' %>
 
 <%= link_to 'Back', appointments_path %>
+</div>
+</div>
+  <div class="col-sm-8">
+    <div class = "form-style-8">
+    <h1 style="text-align: center; color:grey" > Calendar </h1>
+    <%= render partial: 'my_calendar/user_calendar', locals: {appointments: @appointments} %>
+</div>
+</div>

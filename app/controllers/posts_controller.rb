@@ -43,10 +43,10 @@ class PostsController < ApplicationController
    
   def create
     @ask_doctor = AskDoctor.find(params[:ask_doctor_id])
-    @post = @ask_doctor.posts.build(posts_params)
+    @post = @ask_doctor.posts.build(post_params)
     if @post.save 
       #Post saved, redirect to ask_doctor page
-       redirect_to guide_post_url(@ask_doctor, @post)
+       redirect_to ask_doctor_posts_path(@ask_doctor, @post)
         else
      render :action => "new"
     end
@@ -59,13 +59,14 @@ class PostsController < ApplicationController
   def update
     @ask_doctor = AskDoctor.find(params[:ask_doctor_id])
     @post = Post.find(params[:id])
-    if @post.update_attributes(posts_params)
+    if @post.update_attributes(post_params)
     #Post saved, redirect
-    redirect_to ask_doctor_post_url(@ask_doctor, @post)
+    # redirect_to ask_doctor_post_url(@ask_doctor, @post)
+    redirect_to ask_doctor_post_path(@ask_doctor, @post)
     else
     render :action =>"edit"
   end
-
+  end
   # DELETE /posts/1
   # DELETE /posts/1.json
   # DELETE /ask_doctor/1/posts/2
@@ -86,8 +87,8 @@ class PostsController < ApplicationController
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
-    def posts_params
+    def post_params
       params.require(:post).permit(:post_message, :ask_doctor_id)
     end
-  end
+  
 end

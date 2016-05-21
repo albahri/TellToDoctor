@@ -18,13 +18,10 @@ class AppointmentsController < ApplicationController
     end
   end
 
- #  def my_clients
- #    @appointments = Appointment.where('admin_id = ?', current_user.id).where('time >= ?', Time.now).order(time: :asc)  
- #  end
  
- # def my_appointments
- #   @appointments  = Appointment.where(user_id: current_user.id)
- # end
+ def my_appointments
+   @appointments  = Appointment.where(user_id: current_user.id).where('time >= ?', Time.now).order(time: :asc)
+ end
 
   # GET /appointments
   # GET /appointments.json

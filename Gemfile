@@ -1,5 +1,5 @@
 source 'https://rubygems.org'
-
+gem 'simple_calendar'
 gem 'zurb-foundation'
 gem 'foundation-rails'
 

@@ -23,16 +23,14 @@
         <td><%= ask_doctor.title %></td>
         <td><%= ask_doctor.description %></td>
         <td><%= link_to 'Show', ask_doctor %></td>
-        <% if current_user.admin? %>
         <td><%= link_to 'Edit', edit_ask_doctor_path(ask_doctor) %></td>
         <td><%= link_to 'Destroy', ask_doctor, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-        <% end %>
+      
       </tr>
     <% end %>
   </tbody>
 </table>
 
 <br>
-<% if user_signed_in? %>
+
 <%= link_to 'New Ask doctor', new_ask_doctor_path %>
-<%end %>

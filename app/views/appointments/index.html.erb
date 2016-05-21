@@ -1,5 +1,9 @@
-<p id="notice"><%= notice %></p>
 
+<p id="notice"><%= notice %></p>
+<div class="container">
+  <div class="row">
+    <div class="col-lg-12">
+    <div class = "form-style-10">
 <h1>Listing Appointments</h1>
 
 <table>
@@ -33,3 +37,26 @@
 <br>
 
 <%= link_to 'New Appointment', new_appointment_path %>
+</div></div></div></div>
+
+ <div class="form-style-10">
+   <h1>Monthly Calendar</h1>
+   <%= month_calendar(events: @appointments) do |date, appointments| %>
+   <%= date %>
+    <br>
+   <%if appointments.size > 0 %>
+   <%= link_to "<strong>#{appointments.size} appointments</strong>".html_safe, '#' %>
+   <% end %>
+   <% end %>
+ </div>
+
+<!-- <div class="form-style-10">
+ <h1>Daily Calendar</h1>
+ <%= calendar events: @appointments, number_of_days: 5 do |date, appointments| %>
+  <%= date %>
+    <br>
+   <%if appointments.size > 0 %>
+   <%= link_to "<strong>#{appointments.size} appointments</strong>".html_safe, '#' %>
+   <% end %>
+ <% end %>
+ </div>  -->

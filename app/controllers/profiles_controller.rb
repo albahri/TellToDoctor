@@ -1,15 +1,24 @@
 class ProfilesController < ApplicationController
   before_action :set_profile, only: [:show, :edit, :update, :destroy]
-def signedinuserprofile profile = Profile.find_by_user_id(current_user.id) 
+  
+  respond_to :html
+
+def signedinuserprofile
+  profile = Profile.find_by_user_id(current_user.id) 
     if profile.nil?
     redirect_to "/profiles/new"
 
-  else
+    else
+    @profile = Profile.find_by_user_id(current_user.id)
+    redirect_to "/profiles/#{@profile.id}"
+  end 
+end
+
+  def my_profile
     @profile = Profile.find_by_user_id(current_user.id)
     redirect_to "/profiles/#{@profile.id}"
   end
-    
-  end
+
   # GET /profiles
   # GET /profiles.json
   def index
@@ -24,16 +33,17 @@ def signedinuserprofile profile = Profile.find_by_user_id(current_user.id)
   # GET /profiles/1
   # GET /profiles/1.json
   def show
+    respond_with(@profiles)
   end
 
   # GET /profiles/new
    def new
     @profile = Profile.new 
     @profile.user_id = current_user.id
-    respond_to do |format|format.html # new.html.erb
-      format.json{
-        render json: @profile 
-      }
+
+    respond_to do |format|
+     format.html # new.html.erb
+      format.json{ render json: @profile }
     end
   end
 
@@ -46,15 +56,18 @@ def signedinuserprofile profile = Profile.find_by_user_id(current_user.id)
   def create
     @profile = Profile.new(profile_params)
 
-    respond_to do |format|
-      if @profile.save
-        format.html { redirect_to @profile, notice: 'Profile was successfully created.' }
-        format.json { render :show, status: :created, location: @profile }
-      else
-        format.html { render :new }
-        format.json { render json: @profile.errors, status: :unprocessable_entity }
-      end
-    end
+    @profile.save
+    respond_with(@profile)
+
+    # respond_to do |format|
+    #   if @profile.save
+    #     format.html { redirect_to @profile, notice: 'Profile was successfully created.' }
+    #     format.json { render :show, status: :created, location: @profile }
+    #   else
+    #     format.html { render :new }
+    #     format.json { render json: @profile.errors, status: :unprocessable_entity }
+    #   end
+    # end
   end
 
   # PATCH/PUT /profiles/1
