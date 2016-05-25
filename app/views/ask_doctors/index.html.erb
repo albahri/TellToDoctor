@@ -1,9 +1,17 @@
 <p id="notice"><%= notice %></p>
+<div class="container">
+  <div class="row">
+    <div class="col-lg-12">
+    <div class = "form-style-10">
 <%= form_tag(ask_doctors_path, :method => "get", id:"search-form") do %>
 <%= text_field_tag :search, params[:search], placeholder: "Search questions By title" %>
 <%= submit_tag "Search" %>
 <% end %>
-
+</div></div></div></div>
+<div class="container">
+  <div class="row">
+    <div class="col-lg-12">
+    <div class = "form-style-10">
 <h1>Listing Ask Doctors</h1>
 
 <table>
@@ -34,3 +42,4 @@
 <br>
 
 <%= link_to 'New Ask doctor', new_ask_doctor_path %>
+</div></div></div></div>
